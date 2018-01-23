@@ -1,5 +1,5 @@
-var express = require("express");
-var passport = require("passport");
+const express = require("express");
+const passport = require("passport");
 
 const Router = express.Router();
 
@@ -14,4 +14,17 @@ Router.get('/google/callback',
     // Successful authentication, redirect home.
     res.redirect('/dashboard');
   });
+
+Router.get('/verify', function(req, res){
+	if(req.user){
+		console.log(req.user)
+	}else{
+		console.log('no user found')
+	}
+})
+
+Router.get('/logout', function(req, res){
+	req.logout();
+	res.redirect('/');
+})
 module.exports = Router;
